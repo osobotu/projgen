@@ -1,0 +1,35 @@
+project: yamlToFolders
+root: /Users/obotu/development/projgen/lib
+structure:
+  - lib:
+      - main.dart
+      - config.dart
+      - src:
+          - core:
+              - network
+              - shared
+              - routes
+              - styles
+          - features:
+              - models
+              - views
+              - controllers
+              - services
+  - test:
+      - featureX:
+          - models:
+          - services:
+          - controllers:
+          - views:
+  - assets:
+      - images:
+      - icons:
+      - fonts:
+      - animations:
+
+features:
+  - featureX:
+      - models:
+      - views:
+      - controllers:
+      - services:
