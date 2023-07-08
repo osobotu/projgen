@@ -14,7 +14,7 @@ To generate the necessary folders and files, use the following command:
 
 `projgen --config structure.yaml`
 
-Replace `structure.yaml` with the path to your YAML configuration files.
+Replace `structure.yaml` with the path to your YAML configuration file.
 
 ## YAML Configuration
 
