@@ -1,35 +1,34 @@
-project: yamlToFolders
-root: /Users/obotu/development/projgen/lib
-structure:
-  - lib:
-      - main.dart
-      - config.dart
-      - src:
-          - core:
-              - network
-              - shared
-              - routes
-              - styles
-          - features:
-              - models
-              - views
-              - controllers
-              - services
-  - test:
-      - featureX:
-          - models:
-          - services:
-          - controllers:
-          - views:
-  - assets:
-      - images:
-      - icons:
-      - fonts:
-      - animations:
+# Name of your project
+name: demo
 
-features:
-  - featureX:
-      - models:
-      - views:
-      - controllers:
-      - services:
+# Directory where structure generation should start from
+root: /Users/obotu/development/projgen
+
+# Overall folder structure of the project
+structure:
+  # demo is used to show how the project works, in a typical Flutter
+  # or Dart project, this will be lib
+  - demo:
+      - src:
+          - main_dev.dart
+          - main_prod.dart
+          - app.dart
+          - config.dart
+          - core:
+              - core.dart
+              - network:
+              - shared:
+              - routes:
+              - styles:
+          - features:
+          - repositories:
+          - services:
+          - widgets:
+
+# folder structure for each feature
+feature:
+  - models:
+  - views:
+  - providers:
+  - states:
+  - notifiers:
