@@ -10,9 +10,11 @@ To install `projgen`, ensure you have [Dart SDK](https://dart.dev/get-dart) inst
 
 ## Usage
 
+Navigate to the folder where you want to generate the structure.
+
 To generate the necessary folders and files, use the following command:
 
-`projgen --structure` or `projgen -s` or `projgen`
+`projgen --structure` or `projgen -s`
 
 To generate a single feature:
 
@@ -22,14 +24,15 @@ NB: The project structure must be generated before you can add a feature.
 
 ## YAML Configuration
 
-The YAML configuration file defines the project structure at a high level. Here is an example:
+The YAML configuration file defines the project structure at a high level.
+
+Create a `projgen.yaml` file at the root of the Dart or Flutter project.
+
+Here is an example:
 
 ```
 # Name of your project
 name: demo
-
-# Directory where structure generation should start from
-root: /Users/obotu/development/projgen
 
 # Overall folder structure of the project
 structure:

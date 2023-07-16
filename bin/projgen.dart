@@ -1,20 +1,35 @@
+import 'dart:io';
+
 import 'package:projgen/projgen.dart' as projgen;
 import 'package:projgen/src/options.dart';
 
 void main(List<String> args) {
-  var options = parseOptions(args);
+  run(args);
+}
 
-  if (options.help) {
+void run(args) {
+  try {
+    var options = parseOptions(args);
+    if (options.help) {
+      _printUsage();
+      return;
+    }
+
+    if (options.structure) {
+      stdout.write('Generating project structure...\n');
+      projgen.createStructure();
+      stdout.write('Done!\n');
+    } else if (options.feature.isNotEmpty) {
+      stdout.write('Generating ${options.feature} feature...\n');
+      projgen.createFeature(options.feature);
+      stdout.write('Done!\n');
+    } else {
+      _printUsage();
+      return;
+    }
+  } on FormatException {
     _printUsage();
-    return;
-  }
-
-  if (options.feature != null) {
-    projgen.createFeature(options.feature as String);
-  }
-
-  if (options.structure) {
-    projgen.createStructure();
+    exit(-1);
   }
 }
 

@@ -2,25 +2,29 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-const filePath = 'structure.yaml';
+final projgenYamlPath = getProjgenYamlPath();
 
 void createStructure() async {
-  final yaml = await readYamlFile(filePath);
+  final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);
 
-  final rootPath = yamlContent['root'];
+  final rootPath = Directory.current.path;
+
   final jsonConfig = yamlContent['structure'];
 
   createFolders(jsonConfig, rootPath);
 }
 
+// todo: check this
 void createFeature(String name) async {
-  final yaml = await readYamlFile(filePath);
+  final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);
 
-  final featurePath = '${yamlContent['root']}/demo/src/features/$name';
+  final featuresFolderPath = getFolderPath('features');
+
+  final featurePath = '$featuresFolderPath/$name';
   final featureDir = Directory(featurePath);
   featureDir.createSync();
 
@@ -71,4 +75,34 @@ void createFolders(dynamic jsonConfig, String rootPath) {
 void createFile(String fileName, String rootPath) {
   final file = File('$rootPath/$fileName');
   file.createSync();
+}
+
+String getProjgenYamlPath() {
+  Directory currentDir = Directory.current;
+
+  while (!File('${currentDir.path}/projgen.yaml').existsSync()) {
+    final parentDir = currentDir.parent;
+
+    if (parentDir == currentDir) {
+      stderr.write('projgen.yaml file not found');
+    }
+
+    currentDir = parentDir;
+  }
+
+  return '${currentDir.path}/projgen.yaml';
+}
+
+String getFolderPath(String folderName) {
+  final currentDir = Directory.current;
+  final folder = Directory('${currentDir.path}/$folderName');
+
+  if (folder.existsSync()) {
+    return folder.path;
+  } else {
+    stderr.write('Folder not found: $folderName\n');
+    stderr.write(
+        'Have you generated a project structure?\nGenerate a project before adding features\n');
+    exit(-1);
+  }
 }

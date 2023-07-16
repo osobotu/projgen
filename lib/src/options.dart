@@ -12,17 +12,17 @@ class Options {
   @CliOption(
     abbr: 's',
     negatable: false,
-    defaultsTo: true,
+    defaultsTo: false,
     help: "Generate project structure.",
   )
   final bool structure;
 
   @CliOption(
     abbr: 'f',
-    defaultsTo: null,
+    defaultsTo: '',
     help: "Create a new feature with [name] based on feature structure.",
   )
-  final String? feature;
+  final String feature;
 
   Options(this.help, this.structure, this.feature);
 }

@@ -9,7 +9,7 @@ part of 'options.dart';
 Options _$parseOptionsResult(ArgResults result) => Options(
       result['help'] as bool,
       result['structure'] as bool,
-      result['feature'] as String?,
+      result['feature'] as String,
     );
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
@@ -23,13 +23,13 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'structure',
     abbr: 's',
     help: 'Generate project structure.',
-    defaultsTo: true,
     negatable: false,
   )
   ..addOption(
     'feature',
     abbr: 'f',
     help: 'Create a new feature with [name] based on feature structure.',
+    defaultsTo: '',
   );
 
 final _$parserForOptions = _$populateOptionsParser(ArgParser());
