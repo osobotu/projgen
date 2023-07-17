@@ -22,8 +22,8 @@ void createFeature(String name) async {
 
   final yamlContent = getYamlContent(yaml);
 
-  final featuresFolderPath = getFolderPath('features');
-
+  // final featuresFolderPath = getFolderPath('features');
+  final featuresFolderPath = Directory.current.path;
   final featurePath = '$featuresFolderPath/$name';
   final featureDir = Directory(featurePath);
   featureDir.createSync();

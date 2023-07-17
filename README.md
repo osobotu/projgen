@@ -18,6 +18,8 @@ To generate the necessary folders and files, use the following command:
 
 To generate a single feature:
 
+Navigate to your features folder and run
+
 `projgen --feature featureX` or `projgen -f featureX`
 
 NB: The project structure must be generated before you can add a feature.
