@@ -4,7 +4,7 @@ import 'package:yaml/yaml.dart';
 
 final projgenYamlPath = getProjgenYamlPath();
 
-void createStructure() async {
+Future<void> createStructure() async {
   final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);
@@ -17,7 +17,7 @@ void createStructure() async {
 }
 
 // todo: check this
-void createFeature(String name) async {
+Future<void> createFeature(String name) async {
   final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);

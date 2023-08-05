@@ -17,12 +17,5 @@ class Options {
   )
   final bool structure;
 
-  @CliOption(
-    abbr: 'f',
-    defaultsTo: '',
-    help: "Create a new feature with [name] based on feature structure.",
-  )
-  final String feature;
-
-  Options(this.help, this.structure, this.feature);
+  Options(this.help, this.structure);
 }

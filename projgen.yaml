@@ -1,8 +1,5 @@
 # Name of your project
-name: demo
-
-# Directory where structure generation should start from
-root: /Users/obotu/development/projgen
+name: projgen demo
 
 # Overall folder structure of the project
 structure:
@@ -17,18 +14,32 @@ structure:
           - core:
               - core.dart
               - network:
+                  - network.dart
               - shared:
+                  - shared.dart
               - routes:
+                  - routes.dart
               - styles:
+                  - styles.dart
           - features:
           - repositories:
           - services:
           - widgets:
+              - widgets.dart
 
-# folder structure for each feature
-feature:
-  - models:
-  - views:
-  - providers:
-  - states:
-  - notifiers:
+  # this tool is not limited to Dart and Flutter projects
+  # demo structure for a REST API built in Golang.
+  - demo_go:
+      - cmd:
+          - api:
+          - examples:
+      - internal:
+          - data:
+          - jsonlog:
+          - mailer:
+              - templates:
+          - validator:
+      - migrations:
+      - remote:
+      - vendor:
+      - Makefile
