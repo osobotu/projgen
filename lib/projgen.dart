@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-final projgenYamlPath = getProjgenYamlPath();
+final projgenYamlPath = getFilePath('projgen.yaml');
 
 Future<void> createStructure() async {
   stdout.write('Generating project structure...\n');
@@ -24,7 +24,6 @@ Future<void> createFeature(String name) async {
 
   final jsonConfig = yamlContent['feature'];
 
-  // final featuresFolderPath = getFolderPath('features');
   final featuresFolderPath = Directory.current.path;
   final featurePath = '$featuresFolderPath/$name';
   final featureDir = Directory(featurePath);
@@ -55,6 +54,16 @@ Future<String> readYamlFile(String filePath) async {
   }
 }
 
+Future<String> getVersion() async {
+  final pubspecPath = getFilePath('pubspec.yaml');
+  final yaml = await readYamlFile(pubspecPath);
+
+  final yamlContent = getYamlContent(yaml);
+
+  final version = yamlContent['version'];
+  return 'projgen $version';
+}
+
 void createFolders(dynamic jsonConfig, String rootPath) {
   if (jsonConfig is Map) {
     jsonConfig.forEach((key, value) {
@@ -79,20 +88,21 @@ void createFile(String fileName, String rootPath) {
   file.createSync();
 }
 
-String getProjgenYamlPath() {
+/// include file extension
+String getFilePath(String filename) {
   Directory currentDir = Directory.current;
 
-  while (!File('${currentDir.path}/projgen.yaml').existsSync()) {
+  while (!File('${currentDir.path}/$filename').existsSync()) {
     final parentDir = currentDir.parent;
 
     if (parentDir == currentDir) {
-      stderr.write('projgen.yaml file not found');
+      stderr.write('$filename file not found');
     }
 
     currentDir = parentDir;
   }
 
-  return '${currentDir.path}/projgen.yaml';
+  return '${currentDir.path}/$filename';
 }
 
 String getFolderPath(String folderName) {
