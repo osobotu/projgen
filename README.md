@@ -14,7 +14,7 @@ Navigate to the folder where you want to generate the structure.
 
 To generate the necessary folders and files, use the following command:
 
-`projgen --structure` or `projgen -s`
+`projgen create --structure` or `projgen create -s`
 
 ## YAML Configuration
 
@@ -93,10 +93,6 @@ Modify the YAML configuration file to match your desired project structure. Defi
 # Contributing
 
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please create a new issue or submit a pull request.
-
-# Roadmap
-
-Refer to the `ROADMAP.md` file for future plans.
 
 # License
 
