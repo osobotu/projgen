@@ -7,3 +7,6 @@ build/
 
 #vscode 
 .vscode
+
+# macos related
+.DS_Store

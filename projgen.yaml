@@ -43,3 +43,14 @@ structure:
       - remote:
       - vendor:
       - Makefile
+
+# each feature
+feature:
+  - domain:
+      - repositories:
+      - models:
+  - data:
+      - data_provider:
+  - presentation:
+      - controller:
+      - views:

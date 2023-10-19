@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:projgen/projgen.dart' as projgen;
-import 'package:projgen/src/options.dart';
+import 'package:args/args.dart';
+import 'package:args/command_runner.dart';
+import 'package:projgen/src/commands/create_command.dart';
 
 Future<void> main(List<String> args) async {
   await run(args);
@@ -9,33 +10,14 @@ Future<void> main(List<String> args) async {
 
 Future<void> run(List<String> args) async {
   try {
-    var options = parseOptions(args);
-    if (options.help) {
-      _printUsage();
-      return;
-    }
-
-    if (options.structure) {
-      stdout.write('Generating project structure...\n');
-      await projgen.createStructure();
-      stdout.write('Done!\n');
-    } else {
-      _printUsage();
-      return;
-    }
-  } on FormatException {
-    _printUsage();
-    exit(-1);
+    CommandRunner(
+      'projgen',
+      'A command-line tool for project structure and feature generation',
+    )
+      ..addCommand(CreateCommand())
+      ..run(args);
+  } on ArgParserException catch (e) {
+    stderr.write(e);
+    exit(1);
   }
-}
-
-void _printUsage() {
-  print('''
-This is a command-line tool for project structure generation.
-
-Usage: projgen [<args>]
-
-Arguments:
-${parser.usage}
-''');
 }

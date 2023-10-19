@@ -5,6 +5,7 @@ import 'package:yaml/yaml.dart';
 final projgenYamlPath = getProjgenYamlPath();
 
 Future<void> createStructure() async {
+  stdout.write('Generating project structure...\n');
   final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);
@@ -16,11 +17,12 @@ Future<void> createStructure() async {
   createFolders(jsonConfig, rootPath);
 }
 
-// todo: check this
 Future<void> createFeature(String name) async {
   final yaml = await readYamlFile(projgenYamlPath);
 
   final yamlContent = getYamlContent(yaml);
+
+  final jsonConfig = yamlContent['feature'];
 
   // final featuresFolderPath = getFolderPath('features');
   final featuresFolderPath = Directory.current.path;
@@ -28,7 +30,6 @@ Future<void> createFeature(String name) async {
   final featureDir = Directory(featurePath);
   featureDir.createSync();
 
-  final jsonConfig = yamlContent['feature'];
   createFolders(jsonConfig, featurePath);
 }
 
@@ -45,6 +46,7 @@ dynamic getYamlContent(String yaml) {
 Future<String> readYamlFile(String filePath) async {
   try {
     final file = File(filePath);
+
     final content = await file.readAsString();
     return content;
   } catch (e) {
